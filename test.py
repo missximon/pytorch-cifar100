@@ -18,6 +18,8 @@ from torch.utils.data import DataLoader
 
 from conf import settings
 from utils import get_network, get_test_dataloader
+from tqdm import tqdm
+
 
 if __name__ == '__main__':
 
@@ -47,7 +49,7 @@ if __name__ == '__main__':
     total = 0
 
     with torch.no_grad():
-        for n_iter, (image, label) in enumerate(cifar100_test_loader):
+        for n_iter, (image, label) in tqdm(enumerate(cifar100_test_loader)):
             print("iteration: {}\ttotal {} iterations".format(n_iter + 1, len(cifar100_test_loader)))
 
             if args.gpu:

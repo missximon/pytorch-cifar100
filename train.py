@@ -18,6 +18,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
+from tqdm import tqdm
 
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
@@ -30,7 +31,8 @@ def train(epoch):
 
     start = time.time()
     net.train()
-    for batch_index, (images, labels) in enumerate(cifar100_training_loader):
+    for batch_index, (images, labels) in tqdm(enumerate(cifar100_training_loader)):
+    #for batch_index, (images, labels) in tqdm(cifar100_training_loader):
 
         if args.gpu:
             labels = labels.cuda()
